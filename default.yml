@@ -1,0 +1,81 @@
+ak: xxx
+sk: xxx
+
+# 项目名，在每个指标前加上的前缀；默认为"ops"。因为公司有多个项目账号，为了区分指标
+project: "ops"
+
+# 采集现在到多久之前时间的数据，单位：秒，默认 60，必须为整数，最好60倍数，aws也有次参数要求，具体请参考aws文档
+period: 60
+
+regions:
+  - us-west-2        # 俄勒冈
+  - us-east-1        # 弗吉尼亚
+  - us-west-1        # 加利福尼亚
+  - eu-central-1     # 法兰克福
+  - ap-southeast-1   # 新加坡
+
+services:
+  - ec2
+  - elb
+  - rds
+  - redis
+  - es
+  - mq
+  - kafka
+  - s3
+
+metrics:
+  AWS/ELB:
+    - name: RequestCount
+      measure: Sum
+    - name: UnHealthyHostCount
+    - name: Latency
+    - name: SurgeQueueLength
+      measure: Maximum
+  AWS/RDS:
+    - name: CPUUtilization
+    - name: DatabaseConnections
+    - name: FreeableMemory
+    - name: FreeStorageSpace
+    - name: WriteIOPS
+    - name: ReadIOPS
+    - name: WriteLatency
+    - name: ReadLatency
+  AWS/ElastiCache:
+    - name: CacheHitRate
+    - name: CurrConnections
+    - name: CPUUtilization
+    - name: CPUCreditUsage
+    - name: FreeableMemory
+    - name: DatabaseMemoryUsagePercentage
+    - name: NetworkBytesIn
+    - name: NetworkBytesOut
+    - name: ReplicationLag
+  AWS/ES:
+    - name: IndexingRate
+    - name: IndexingLatency
+    - name: SearchRate
+    - name: SearchLatency
+    - name: WriteIOPS
+    - name: WriteLatency
+    - name: ReadIOPS
+    - name: ReadLatency
+    - name: FreeStorageSpace
+    - name: ClusterUsedSpace
+    - name: ClusterStatus.green
+  AWS/AmazonMQ:
+    - name: CpuUtilization
+    - name: NetworkIn
+    - name: NetworkOut
+    - name: StorePercentUsage
+    - name: CurrentConnectionsCount
+    - name: TotalMessageCount
+    - name: TotalEnqueueCount
+    - name: TotalDequeueCount
+    - name: TotalProducerCount
+    - name: TotalConsumerCount
+  AWS/Kafka:
+    - name: GlobalPartitionCount
+    - name: GlobalTopicCount
+    - name: ClientConnectionCount
+    - name: KafkaDataLogsDiskUsed
