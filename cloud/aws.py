@@ -90,7 +90,7 @@ class AWS(object):
             ec2["subnet_id"] = instance["SubnetId"]
             ec2["vpc_id"] = instance["VpcId"]
             ec2["architecture"] = instance["Architecture"]
-            ec2["cpu_num"] = str(instance["CpuOptions"]["CoreCount"])
+            ec2["cpu_num"] = str(instance["CpuOptions"]["ThreadsPerCore"])
             ec2["platform"] = instance["PlatformDetails"]
             ec2s.append(ec2)
         return ec2s
